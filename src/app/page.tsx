@@ -1,5 +1,6 @@
 import { Hero } from "@/components/home/hero";
-
+import { Card } from "@/components/ui/card";
+import{formatMoney} from "@/lib/utils"
 import { Filter } from "@/components/filter";
 import { Products } from "@/components/products";
 
@@ -18,6 +19,8 @@ export default async function Home({searchParams}: HomeProps) {
  
   return(
     <div className=" flex flex-col gap-4">
+
+      
     
       <Hero/>
       
@@ -29,7 +32,7 @@ export default async function Home({searchParams}: HomeProps) {
         <Products products={products} category={category}/>
       
       
-      </section>
+      </section> 
 
     </div>
     

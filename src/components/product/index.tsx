@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Card } from "../ui/card";
 
@@ -7,8 +8,12 @@ interface Props{
 }
 
 export function Product({data}: Props){
+    const router = useRouter();
     return(
-         <Card style={{backgroundImage:`url(${data.images[0]})`}}
+         <Card onClick={() => {
+            router.push(`/p/${data.id}`);
+         }}
+          style={{backgroundImage:`url(${data.images[0]})`}}
          className="h-60 text-white bg-center bg-no-repeat flex p-0">
             <div className="bg-black/40 flex-1 flex flex-col justify-end p-4">
                  <h4> {data.title}</h4>

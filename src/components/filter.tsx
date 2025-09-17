@@ -83,7 +83,7 @@ export function Filter({ data, category }: FilterProps) {
           <FilterDrawer
             onApply={({ minPrice, maxPrice }) => {
               console.log("Filter by price:", minPrice, maxPrice);
-              // TODO: filter your data or update query params here
+              
             }}
           />
         </div>
@@ -125,7 +125,7 @@ export function FilterDrawer({ onApply }: FilterDrawerProps) {
             <DrawerDescription>Search by price range</DrawerDescription>
           </DrawerHeader>
 
-          {/* Price range inputs */}
+          
           <div className="p-4 pb-0 space-y-4">
             <div>
               <label className="block text-sm font-medium mb-1">Min Price</label>
