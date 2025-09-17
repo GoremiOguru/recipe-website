@@ -8,10 +8,10 @@ interface Props{
 
 export function Product({data}: Props){
     return(
-         <Card style={{backgroundImage:`url(${data.image})`}}
+         <Card style={{backgroundImage:`url(${data.images[0]})`}}
          className="h-60 text-white bg-center bg-no-repeat flex p-0">
             <div className="bg-black/40 flex-1 flex flex-col justify-end p-4">
-                 <h4> {data.name}</h4>
+                 <h4> {data.title}</h4>
             <div className="Flex gap-2 items-center">
                 <Avatar>
                     <AvatarFallback className="text-black ">OG</AvatarFallback>

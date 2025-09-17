@@ -1,17 +1,24 @@
 interface Product{
     id: string;
-    name: string;
-    ingreedients: string[];
-    instructions: string[];
-    preptimeMinutes: number;
-    cookTimeMinutes: number;
-    difficulty: 'Easy' | 'Hard';
-    cuisine: string;
-    tags: string[];
-    userId: string;
-    image: string;
+    title: string;
+    description: string;
+    category: string;
+    price: number;
+    discountpercentage: number;
     rating: number;
-    reviewCount: number;
-    mealType: string[];//its the same with string[]. (string array)
+    stock: number;
+    tags: string[];
+    images: string[];
+    brand: string;
+    reviews: {
+        rating: number;
+        comment: string;
+        date: string;
+        reviewerName: string;
+        reviewerEmail: string;
+    }[];
+   
+    
+   // mealType: string[];its the same with string[]. (string array)
     
 }

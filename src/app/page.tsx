@@ -6,14 +6,15 @@ import { Products } from "@/components/products";
 
 interface HomeProps{
   searchParams: Promise<{
-    cuisine?: string
+    category?: string
+
   }>
 }
 export default async function Home({searchParams}: HomeProps) {
-  const {cuisine} = await searchParams;
+  const {category} = await searchParams;
   const res = await fetch("https://dummyjson.com/products?limit=30");
   const data = await res.json();
-  const recipes = (data?.recipes || []) as unknown as Product[];
+  const products = (data?.products || []) as unknown as Product[];
  
   return(
     <div className=" flex flex-col gap-4">
@@ -22,10 +23,10 @@ export default async function Home({searchParams}: HomeProps) {
       
       
       <section className=" flex flex-col gap-6 px-4 py-6 md:px-6">
-        <Filter data={recipes} cuisine={cuisine}/>
+        <Filter data={products} category={category}/>
 
 
-        <Products products={recipes} cuisine={cuisine}/>
+        <Products products={products} category={category}/>
       
       
       </section>

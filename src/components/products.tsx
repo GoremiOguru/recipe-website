@@ -6,21 +6,21 @@ import { Product } from "./product"
 
 interface ProductProps {
     products: Product[]
-    cuisine?: string;
+    category?: string;
 }
 
 
-export function Products({products, cuisine}: ProductProps){
+export function Products({products, category}: ProductProps){
     const data = useMemo(()=> {
         let newData: Product[] =[]
-        if (cuisine){
-            return products.filter((p)=> p.cuisine == cuisine)
+        if (category){
+            return products.filter((p)=> p.category == category)
         }
         else{
            return  newData = products
         }
        
-    }, [products, cuisine])
+    }, [products, category])
     return(
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {data?.map((p,i) =>

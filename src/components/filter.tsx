@@ -30,27 +30,27 @@ import { useMemo, useEffect, useState } from "react";
 
 interface FilterProps {
   data: Product[];
-  cuisine?: string;
+  category?: string;
 }
 import { Input } from "@/components/ui/input";
 
-export function Filter({ data, cuisine }: FilterProps) {
-  const pills = ["food", "fries", "cuisine", "meal"];
+export function Filter({ data, category }: FilterProps) {
+  const pills = ["beauty", "fragrance", "groceries", "furniture"];
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const cuisines = useMemo(() => {
+  const categories = useMemo(() => {
     const newD: string[] = [];
     data?.forEach((d) => {
-      if (!newD.includes(d.cuisine)) newD.push(d.cuisine);
+      if (!newD.includes(d.category)) newD.push(d.category);
     });
     return newD;
   }, [data]);
-  console.log(cuisines)
+  console.log(category)
   function handleSelect(c: string) {
     const params = new URLSearchParams(searchParams);
-    params.set("cuisine", c);
+    params.set("category", c);
     replace(`${pathname}?${params.toString()}`);
   }
   return (
@@ -58,22 +58,24 @@ export function Filter({ data, cuisine }: FilterProps) {
       <div className=" hidden md:flex gap-4">
         {pills.map((p) => (
           <Badge key={p} variant={"outline"} className="rounded-full">
-            {p}
+            
+           {p}
+                
           </Badge>
         ))}
       </div>
       <div className="p-6">
         <div className="flex justify-end p-4">
           
-          <Select onValueChange={handleSelect} value={cuisine}>
+          <Select onValueChange={handleSelect} value={category}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select a cuisine" />
+              <SelectValue placeholder="Select a product" />
             </SelectTrigger>
             <SelectContent>
-              <SelectGroup><SelectLabel>Cuisines</SelectLabel>
-              {cuisines?.map((c) => (
-                <SelectItem key={c} value={c}>
-                  {c}
+              <SelectGroup><SelectLabel>Categories</SelectLabel>
+              {categories?.map((p) => (
+                <SelectItem key={p} value={p}>
+                  {p}
                 </SelectItem>
               ))}</SelectGroup>
             </SelectContent>
