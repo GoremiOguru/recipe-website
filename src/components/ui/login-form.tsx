@@ -1,3 +1,6 @@
+"use client"
+
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -9,11 +12,14 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useRouter } from "next/navigation"
 
 export function LoginForm({
   className,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<"div">) 
+{
+  const router = useRouter();
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -73,15 +79,24 @@ export function LoginForm({
                   </div>
                   <Input id="password" type="password" required />
                 </div>
-                <Button type="submit" className="w-full">
-                  Login
-                </Button>
+                 <Button type="button" className="w-full"
+                       onClick={() => {
+                            router.push("/")
+                        }}>
+                        Login
+                      </Button>
               </div>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
-                <a href="#" className="underline underline-offset-4">
-                  Sign up
-                </a>
+                 <button className="underline underline-offset-4 hover:text-blue-500"
+                        onClick={() => {
+                            router.push("/auth/signup")
+                        }}
+                    >
+                      Sign up
+                
+                    </button>
+                
               </div>
             </div>
           </form>

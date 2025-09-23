@@ -5,12 +5,12 @@ import { Bookmark, Search, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Toggle } from "../theme/toggle";
 
-function Login() {
-const router = useRouter();
-}
+
 
 
 export function Header(){
+    const router = useRouter();
+
     return(
          
         <div>
@@ -38,12 +38,13 @@ export function Header(){
                     <span className="p-2 rounded full border border-border">
                         <Bookmark  className="w-4 h-4 md:w-7 md:h-7"/>
                     </span>
-                    {/* <span>
-                        <button onClick={() => router.push("components/ui/login-form")}>
+                    <button
+                        onClick={() => {
+                            router.push("/auth/login")
+                        }}
+                    >
                         Login
-                        </button>
-                    </span> */}
-                    
+                    </button>
                 
             </div>
             </header>
