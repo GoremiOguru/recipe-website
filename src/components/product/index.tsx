@@ -1,10 +1,12 @@
 import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Card } from "../ui/card";
+import { Products } from "@/actions/products";
+import { Heart } from "lucide-react";
 
 
 interface Props{
-    data: Product;
+    data: Products[0];
 }
 
 export function Product({data}: Props){
@@ -13,19 +15,22 @@ export function Product({data}: Props){
          <Card onClick={() => {
             router.push(`/p/${data.id}`);
          }}
-          style={{backgroundImage:`url(${data.images[0]})`}}
+          style={{backgroundImage:`url(${data.image})`}}
          className="h-60 text-white bg-center bg-no-repeat flex p-0">
             <div className="bg-black/40 flex-1 flex flex-col justify-end p-4">
-                 <h4> {data.title}</h4>
+                 <h4> {data.name}</h4>
             <div className="Flex gap-2 items-center">
                 <Avatar>
                     <AvatarFallback className="text-black ">OG</AvatarFallback>
                 </Avatar>
-
+             {/* <div className="absolute top-2 right-2 p-2 bg-gray-500 rounded-full">
+                <Heart/>
+            </div> */}
+            
             </div>
-            <div className="flex flex-col ">
-                <h5 className="text-sm font-medium">Goremi Oguru</h5>
-                <p className="text-xs font-light"> Lorem ipsum, dolor sit amet consectetur an!</p>
+           
+            <div className="flex gap-2 items-center">
+                <h2 className="text-md font-bold">{data.rating}</h2>
             </div>
             </div>
            

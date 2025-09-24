@@ -29,12 +29,14 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useMemo, useEffect, useState } from "react";
 
 interface FilterProps {
-  data: Product[];
-  category?: string;
+  data: Products;
+  params: FilterItemsProps;
+ 
 }
 import { Input } from "@/components/ui/input";
+import { Products } from "@/actions/products";
 
-export function Filter({ data, category }: FilterProps) {
+export function Filter({ data, params }: FilterProps) {
   const pills = ["beauty", "fragrance", "groceries", "furniture"];
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -43,14 +45,14 @@ export function Filter({ data, category }: FilterProps) {
   const categories = useMemo(() => {
     const newD: string[] = [];
     data?.forEach((d) => {
-      if (!newD.includes(d.category)) newD.push(d.category);
+      if (!newD.includes(d.cuisine)) newD.push(d.cuisine);
     });
     return newD;
   }, [data]);
-  console.log(category)
+ 
   function handleSelect(c: string) {
     const params = new URLSearchParams(searchParams);
-    params.set("category", c);
+    params.set("cuisine", c);
     replace(`${pathname}?${params.toString()}`);
   }
   return (
@@ -66,13 +68,13 @@ export function Filter({ data, category }: FilterProps) {
       </div>
       <div className="p-6">
         <div className="flex justify-end p-4">
-          
-          <Select onValueChange={handleSelect} value={category}>
+
+          <Select onValueChange={handleSelect} value={params?.cuisine}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select a product" />
             </SelectTrigger>
             <SelectContent>
-              <SelectGroup><SelectLabel>Categories</SelectLabel>
+              <SelectGroup><SelectLabel>Cuisines</SelectLabel>
               {categories?.map((p) => (
                 <SelectItem key={p} value={p}>
                   {p}

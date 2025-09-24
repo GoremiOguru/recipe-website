@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "seed": "prisma db seed"
   },
   "dependencies": {
     "@prisma/client": "^6.16.2",
@@ -38,5 +39,18 @@
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.8",
     "typescript": "^5"
-  }
+  },
+  "prisma":{
+  "schema": "./prisma",
+  "seed": "bun run prisma/seed.ts" 
+  },
+  "trustedDependencies": [
+    "@prisma/client",
+    "@prisma/engines",
+    "prisma"
+
+  ]
+
+
 }
+

@@ -1,24 +1,28 @@
 interface Product{
     id: string;
-    title: string;
-    description: string;
-    category: string;
-    price: number;
-    discountpercentage: number;
-    rating: number;
-    stock: number;
-    tags: string[];
-    images: string[];
-    brand: string;
-    reviews: {
-        rating: number;
-        comment: string;
-        date: string;
-        reviewerName: string;
-        reviewerEmail: string;
-    }[];
+    name: string;
+    ingredients: string[];
+    instructions: string[];
+    prepTimeMinutes:number;
+    cookTimeMinutes:number;
+    servings:number;
+    difficulty: string;
+    cuisine: string;
+    caloriesPerServing: number;
+    tags:string[];
+    image:string;
+    rating:number;
+    reviewCount:number;
+    mealType:string[];
+    };
    
     
    // mealType: string[];its the same with string[]. (string array)
     
+interface FilterItemsProps{
+    name?: string;
+    cuisine?: string;
+    sort?: string;
+    minPrice?: number;
+    maxPrice?: number;
 }

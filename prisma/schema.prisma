@@ -7,6 +7,7 @@
 generator client {
   provider = "prisma-client-js"
   output   = "../src/lib/prisma/generated"
+  seed = "ts-node --transpile-only prisma/seed.ts"
 }
 
 datasource db {
@@ -26,55 +27,59 @@ model User{
 
 model Product{
   id String @id @default(uuid())
-  title String
-  description String
-  price Int
-  discountPercentage Int?
-  stock Int
+  name String
+  ingredients String[]
+  instructions String[]
+  mealType String[]
+  reviewCount Int
+  prepTimeMinutes Int?
+  cookTimeMinutes Int?
+  servings Int
+  caloriesPerServing Int
+  difficulty String
+  cuisine String
   tags String[]
-  rating Int
-  categoryId String
-  brandId String
-  reviewId String[]
+  rating Float
+  image String
 
-  Images Image[] 
-  category Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  brand Brand? @relation(fields: [brandId], references: [id], onDelete: Cascade)
-  reviews Review[]
-}
+//   Images Image[] 
+//   category Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+//   brand Brand? @relation(fields: [brandId], references: [id], onDelete: Cascade)
+//   reviews Review[]
+// }
 
-model Image{
-  id String @id @default(uuid())
-  url String @unique
-  productId String?
+// model Image{
+//   id String @id @default(uuid())
+//   url String @unique
+//   productId String?
 
-  Product Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
-}
+//   Product Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+// }
 
-model Category{
-  id String @id @default(uuid())
-  name String @unique
-  products Product[]
+// model Category{
+//   id String @id @default(uuid())
+//   name String @unique
+//   products Product[]
   
 
-}
+// }
 
-model Review{
-  id String @id @default(uuid())
-  rating Int
-  comment String?
-  createdAt DateTime @default(now())
-  productId String
+// model Review{
+//   id String @id @default(uuid())
+//   rating Int
+//   comment String?
+//   createdAt DateTime @default(now())
+//   productId String
 
-  product Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
-}
-
-
+//   product Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+// }
 
 
-model Brand{
-  id String @id @default(uuid())
-  name String @unique
-  products Product[]
+
+
+// model Brand{
+//   id String @id @default(uuid())
+//   name String @unique
+//   products Product[]
 
 }
