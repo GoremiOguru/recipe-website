@@ -4,23 +4,23 @@ import prisma from "@/lib/prisma"
 
 //the where code block in line 11 is used to limit the cuisine to indian only
 
-export async function getProducts(){
+export async function getProducts(take?: number){
     try{
         const products = await prisma.product.findMany({
 
-            // where:{
+            //  where:{
             //     cuisine:{
             //         mode: "insensitive",
-            //         equals: "Indian",
-            //     },
-            // },
+                    
+            //   },
+            //  },
             select:{
                 id: true,
                 name: true,
                 image: true,
                 cuisine: true,
                 rating: true,
-            }
+            }, take: take || 40,
 
         })
         return products;
