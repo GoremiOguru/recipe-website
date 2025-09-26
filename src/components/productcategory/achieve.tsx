@@ -39,19 +39,21 @@ export async function Achieve({ products }: { products: any[] }) {
       </div>
 
      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {products.slice(0, 6).map((item, index) => (
-          <Link href={`/p/${item.id}`} key={item.id}>
+      <div className="grid grid-cols-4 md:grid-cols-4 gap-5 h-[30rem] grid-rows-2 w-full">
+        {products.slice(0, 5).map((item, index) => (
+          <Link href={`/p/${item.id}`} key={item.id} className={`relative rounded-xl overflow-hidden shadow-lg cursor-pointer group ${
+                index === 0 && "md:col-span-2 md:row-span-2 h-full"
+              }`}>
             <div
-              className={`relative rounded-xl overflow-hidden shadow-lg cursor-pointer group ${
-                index === 0 ? "md:col-span-2 md:row-span-2" : ""
-              }`}
+              
             >
-              <img
+              <div className="w-full h-full overflow-hidden">
+                <img
                 src={item.image}
                 alt={item.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
               />
+              </div>
               <div className="absolute bottom-0 left-0 right-0 bg-black/40 p-4 flex justify-between items-center">
                 <h3 className="text-white font-bold">{item.name}</h3>
                 <span className="flex items-center justify-center w-8 h-8 bg-white rounded-full">
